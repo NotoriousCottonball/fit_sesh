@@ -13,7 +13,9 @@ This is a Sinatra App made by George Pianka for Flatiron School Final Project Se
 `$ bundle install`
 #### Database
 `$ bundle exec rake db:schema:load`
+
 ---
+
 ### Initiating a Server:
 
 #### Rackup Command
