@@ -1,19 +1,25 @@
 # Fit Sesh
-### Best Reviewed and Recently Added Movies/Television Based on User's Streaming Subscriptions
+### Share Workouts / Track Results
 
-This Ruby Gem provides a CLI to view Highest Rated/Recently Added Movies and Television according to Vulture.com Streaming Recommendations, and provides additional details on the user's selection according to IMDB.com.
-The Gem asks which popular streaming services the user has access to and whether the user wants recommendations for Highest Reviewed Films, Highest Reviewed Television, or Most Recent Additions.
-The Gem returns a filtered list of recommendations from Vulture.com and then further details/information from IMDB.com upon user request.
+This is a Sinatra App made by George Pianka for Flatiron School Final Project Section 2 (Ruby/Sinatra). The application allows the user to store, track and share workouts. The user can store workout session details(toggle on/off the "share" option), track their progress across all sessions, and view a full multi-user generated index of all shared workouts. This way, the user can browse and get ideas for workouts while tracking their own progress.
 
 ## Usage
 
-After cloning with `git clone` from the command line, use the executable to run the application.
+After cloning with `git clone`, run `bundle install` & `bundle exec rake db:migrate` from the command line.
+### Initiate a Server:
 
-    $ what_to_watch
+#### Rackup Command:
+```
+bundle exec rackup
+```
 
-From within your own application's code, start the CLI Controller.
+(OR)
 
-    $ WhatToWatch::CLI.new.start
+#### Shotgun:
+For application-wide reloading of all source files and templates on each request.
+```
+bundle exec shotgun
+```
 
 ## Contributing
 
