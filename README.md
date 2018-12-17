@@ -13,15 +13,14 @@ This is a Sinatra App made by George Pianka for Flatiron School Final Project Se
 `$ bundle install`
 #### Database
 `$ bundle exec rake db:schema:load`
-
-
+---
 ### Initiating a Server:
 
 #### Rackup Command
 `$ bundle exec rackup`
 
 #### Shotgun
-##### For application-wide reloading of all source files and templates on each request:
+##### (For application-wide reloading of all source files and templates on each request)
 `$ bundle exec shotgun`
 
 ## Contributing
