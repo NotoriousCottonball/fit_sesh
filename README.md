@@ -5,20 +5,17 @@ This is a Sinatra App made by George Pianka for Flatiron School Final Project Se
 
 ## Usage
 
-#### 1. Clone
+### Run The Following From the Command Line:
 ```
 git clone https://github.com/NotoriousCottonball/fit_sesh.git
 ```
-
-#### 2. Bundler
 ```
 bundle install
 ```
-
-#### 3. Database
 ```
 bundle exec rake db:schema:load
 ```
+
 ### Initiate a Server:
 
 #### Rackup Command:
