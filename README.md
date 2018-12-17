@@ -5,15 +5,26 @@ This is a Sinatra App made by George Pianka for Flatiron School Final Project Se
 
 ## Usage
 
-After cloning with `git clone`, run `bundle install` & `bundle exec rake db:migrate` from the command line.
+#### 1. Clone
+```
+git clone https://github.com/NotoriousCottonball/fit_sesh.git
+```
+
+#### 2. Bundler
+```
+bundle install
+```
+
+#### 3. Database
+```
+bundle exec rake db:schema:load
+```
 ### Initiate a Server:
 
 #### Rackup Command:
 ```
 bundle exec rackup
 ```
-
-(OR)
 
 #### Shotgun:
 For application-wide reloading of all source files and templates on each request.
