@@ -8,25 +8,25 @@ This is a Sinatra App made by George Pianka for Flatiron School Final Project Se
 ### Setting Up:
 
 #### Clone
-  $ git clone https://github.com/NotoriousCottonball/fit_sesh.git
+  `$ git clone https://github.com/NotoriousCottonball/fit_sesh.git`
 #### Bundler
-  $ bundle install
+  `$ bundle install`
 #### Database
-  $ bundle exec rake db:schema:load
+  `$ bundle exec rake db:schema:load`
 
 ### Initiating a Server:
 
 #### Rackup Command
-  $ bundle exec rackup
+  `$ bundle exec rackup`
 
 #### Shotgun
 For application-wide reloading of all source files and templates on each request:
-  $ bundle exec shotgun
+  `$ bundle exec shotgun`
 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at
-### https://github.com/NotoriousCottonball/fit_sesh.
+#### https://github.com/NotoriousCottonball/fit_sesh.
 This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
 ## License
