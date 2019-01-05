@@ -14,7 +14,7 @@ This is a Sinatra App made by George Pianka for Flatiron School Final Project Se
 #### 3. Database
 `$ bundle exec rake db:schema:load`
 #### 4. SESSION_SECRET
-##### (Set ENV('SESSION_SECRET') or run the following rake task to generate and use a random 128-character code)
+##### (Either set ENV('SESSION_SECRET') OR RUN the following Rake Task to generate a random 128-character code that will be used by the controller configuration settings)
 `$ bundle exec rake session_secret`
 
 ## Initiating a Server
