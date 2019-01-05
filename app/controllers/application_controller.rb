@@ -7,4 +7,8 @@ class ApplicationController < Sinatra::Base
     enable :sessions
     set :session_secret, ENV.fetch('SESSION_SECRET'){`bundle config session_secret`.slice(142..-1)}
   end
+
+  get '/' do
+    erb :index
+  end
 end
