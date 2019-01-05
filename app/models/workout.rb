@@ -8,4 +8,6 @@ class Workout < ActiveRecord::Base
   validates :rating, presence: true
   validates :user_id, presence: true
 
+  extend Slugifiable::ClassMethods
+  include Slugifiable::InstanceMethods
 end
