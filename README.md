@@ -7,12 +7,15 @@ This is a Sinatra App made by George Pianka for Flatiron School Final Project Se
 
 ## Setting Up
 
-#### Clone
+#### 1. Clone
 `$ git clone https://github.com/NotoriousCottonball/fit_sesh.git`
-#### Bundler
+#### 2. Bundler
 `$ bundle install`
-#### Database
+#### 3. Database
 `$ bundle exec rake db:schema:load`
+#### 4. SESSION_SECRET
+##### (Set ENV('SESSION_SECRET') or run the following rake task to generate and use a random 128-character code)
+`$ bundle exec rake session_secret`
 
 ## Initiating a Server
 
