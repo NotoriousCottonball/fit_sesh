@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+
+  <head>
+    <title>Fit_Sesh</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  </head>
+
+  <body>
+  <div class="container">
+
+    <% if flash[:message] %>
+      <h2 style="color: darkblue;"><%= flash[:message] %><h2>
+    <% end %>
+    <% if flash[:error] %>
+      <h2 style="color: red;"><%= flash[:error] %></h2>
+    <% end %>
+
+  <%= yield %>
+
+    <% if logged_in? %>
+      <h6>MENU:</h6>
+        <p><a href="/logout">Logout </a></p>
+        <p><a href="/workouts">Workout Index </a></p>
+        <p><a href="/exercises">Exercise Index </a></p>
+    <% end %>
+
+  </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  </body>
+
+</html>
