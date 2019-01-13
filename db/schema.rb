@@ -36,10 +36,9 @@ ActiveRecord::Schema.define(version: 2019_01_05_124758) do
   end
 
   create_table "workouts", force: :cascade do |t|
-    t.datetime "date_time", default: "2019-01-13 08:49:32"
     t.integer "duration_minutes"
     t.integer "user_id"
-    t.boolean "share_status", default: false
+    t.boolean "share_status", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

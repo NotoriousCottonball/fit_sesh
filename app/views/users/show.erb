@@ -13,12 +13,12 @@
   <% if !@user.workouts.empty? %>
   <h4>Workouts:</h4>
     <ol>
-      <%@user.workouts.each do |workout|%>
-      <li><a href="/workouts/<%= workout.id%>"><%= workout.name %></a></li>
+      <% @user.workouts.each do |workout|%>
+      <li><a href="/workouts/<%= workout.id%>"><%=workout.created_at.in_time_zone("America/Los_Angeles").strftime("%A - %m/%d/%Y - %H:%M %p") %></a></li>
+      <li><%=  %></li>
       <% end %>
     </ol><br>
     <% end %>
-
   <h4>Add Another Workout</h4>
   <p>Please, click <a href="/workouts/new">here.</a></p><br>
 </div>

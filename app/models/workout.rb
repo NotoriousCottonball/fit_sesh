@@ -5,9 +5,8 @@ class Workout < ActiveRecord::Base
   has_many :exercises, :through => :exercise_instances
   has_many :exercise_instances
   validates :duration_minutes, presence: true
-  validates :rating, presence: true
   validates :user_id, presence: true
-  validates :share_status, presence: true
+  validates :share_status, inclusion: {in: [true, false]}
 
   extend Slugifiable::ClassMethods
   include Slugifiable::InstanceMethods
