@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true
   validates :email, uniqueness: true
   validates_format_of :email, :with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
-  validates :password, length: {minimum: 6}, allow_nil: true #lose the cached value for password on reload from database
+  validates :password, length: {minimum: 6}, allow_nil: true #loses the cached value for password on reload from database
 
   extend Slugifiable::ClassMethods
   include Slugifiable::InstanceMethods

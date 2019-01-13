@@ -1,5 +1,6 @@
 class CreateExerciseInstances < ActiveRecord::Migration[5.2]
-  create_table :exercise_instances do |t|
+  def change
+    create_table :exercise_instances do |t|
       t.integer :exercise_id
       t.integer :workout_id
       t.integer :weight_lbs
