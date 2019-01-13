@@ -1,0 +1,24 @@
+<div class="container">
+  <h3 class="mb-3 text-muted"><u>Profile Page</u></h3>
+  <h1 class="mb-4 display-2 font-weight-bold"><%=@user.username%></h1>
+
+
+  <div class="d-inline-flex p-2 mb-2 bg-secondary text-light h5">User Info</div>
+    <ul>
+      <li>User Name: <strong><%=@user.username%></strong></li>
+      <li>User Email: <strong><%=@user.email%></strong></li>
+      <li>User Slug: <strong><%=@user.slug%></strong></li>
+    </ul><br>
+
+  <% if !@user.workouts.empty? %>
+  <h4>Workouts:</h4>
+    <ol>
+      <%@user.workouts.each do |workout|%>
+      <li><a href="/workouts/<%= workout.id%>"><%= workout.name %></a></li>
+      <% end %>
+    </ol><br>
+    <% end %>
+
+  <h4>Add Another Workout</h4>
+  <p>Please, click <a href="/workouts/new">here.</a></p><br>
+</div>

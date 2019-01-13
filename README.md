@@ -1,7 +1,7 @@
 # Fit Sesh
 ### Share Workouts / Track Results
 
-This is a Sinatra App made by George Pianka for Flatiron School Final Project Section 2 (Ruby/Sinatra). The application allows the user to store, track and share workouts. The user can store workout session details(toggle on/off the "share" option), track their progress across all sessions, and view a full multi-user generated index of all shared workouts. This way, the user can browse and get ideas for workouts while tracking their own progress.
+This is a Sinatra App made by George Pianka for Flatiron School Final Project Section 2 (Ruby/Sinatra). The application allows the user to log, track, and share workouts. The user can store workout session details(toggle on/off the "share" option), track their progress across all sessions, and view a full multi-user generated index of all shared workouts. This way, the user can browse and get ideas for workouts while tracking their own progress.
 
 ---
 

@@ -8,7 +8,7 @@
      <% if logged_in? %>
         <a href='/users/<%= current_user.slug %>' class="btn btn-lg btn-info mr-2">View Profile</a>
         <a href='/logout' class="btn btn-lg btn-dark ml-2">Logout</a>
-        <h2 class="mt-5 display-5 font-weight-bold" style="color: lightcyan;">Welcome <%= current_user.username %>!</h2>
+        <h2 class="mt-5 display-5 font-weight-bold" style="color: whitesmoke;">Welcome <%= current_user.username %>!</h2>
      <%else%>
          <a href='/login' class="btn btn-lg btn-primary mr-2">Log in</a>
          <a href='/signup' class="btn btn-lg btn-secondary ml-2 ">Sign up</a>
