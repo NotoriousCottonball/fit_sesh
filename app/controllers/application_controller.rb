@@ -11,7 +11,6 @@ class ApplicationController < Sinatra::Base
 
   get '/' do
     erb :index
-    raise ENV.inspect
   end
 
   helpers do
