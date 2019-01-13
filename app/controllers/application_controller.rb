@@ -40,4 +40,5 @@ class ApplicationController < Sinatra::Base
     def authorized_to_edit?(wine)
       @workout.user == current_user
     end
+  end
 end
