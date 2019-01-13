@@ -7,6 +7,7 @@ class Workout < ActiveRecord::Base
   validates :duration_minutes, presence: true
   validates :rating, presence: true
   validates :user_id, presence: true
+  validates :share_status, presence: true
 
   extend Slugifiable::ClassMethods
   include Slugifiable::InstanceMethods
