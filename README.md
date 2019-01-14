@@ -22,7 +22,7 @@ This is a Sinatra App made by George Pianka for Flatiron School Final Project Se
 #### Rackup Command
 `$ rackup`
 #### Shotgun
-##### *For application-wide reloading of all source files and templates on each request *
+##### *For application-wide reloading of all source files and templates on each request*
 `$ shotgun`
 
 ---
