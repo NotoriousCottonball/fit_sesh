@@ -24,9 +24,20 @@ body {
   background: linear-gradient(rgba(0, 0, 250, 0.25), rgba(125, 250, 250, 0.45)), url(/images/fit_sesh_jumbotron.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
-  color: white !important;
+  color: white;
 }
-
+.navbar .navbar-brand {
+    color: #BAA1AE;
+    padding-right: 50px;
+}
+.navbar-nav .nav-item:hover .nav-link {
+    color: white;
+}
+.navbar-nav .nav-item .nav-link {
+    color: #BAA1AE;
+    padding-right: 30px;
+    padding-bottom: 12px;
+}
 .form-signin {
   width: 100%;
   max-width: 330px;
