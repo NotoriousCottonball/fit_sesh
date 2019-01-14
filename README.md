@@ -14,7 +14,7 @@ This is a Sinatra App made by George Pianka for Flatiron School Final Project Se
 #### 3. Database
 `$ rake db:schema:load` | `$ rake db:seed`
 #### 4. SESSION_SECRET
-##### *Set ENV('SESSION_SECRET') -OR- Default to a random 128-character code generated using the below Rake Task*
+##### *Set ENV('SESSION_SECRET') -OR- Default to a random 128-character code generated using the Rake Task below*
 `$ rake session_secret`
 
 ## Initiating a Server
