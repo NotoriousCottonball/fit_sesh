@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       flash[:message] = "Welcome, #{@user.username}!"
       redirect to "/users/#{@user.slug}"
     else
-      flash[:error] = "Your credentials were invalid. Please Sign Up or Try Again."
+      flash[:error] = "Your Credentials were Invalid. Please Sign Up or Try Again."
       erb :"/users/login"
     end
   end
@@ -52,7 +52,7 @@ class UsersController < ApplicationController
   get '/logout' do
    if session[:user_id] != nil
      session.destroy
-     flash[:message] = "You have been logged out. Thanks for visiting!"
+     flash[:message] = "You have been logged out. See You Soon!"
      redirect to '/'
    else
      redirect to '/'

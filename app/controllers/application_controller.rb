@@ -14,6 +14,7 @@ class ApplicationController < Sinatra::Base
   end
 
   helpers do
+
     def logged_in?
       !!current_user
     end
@@ -36,8 +37,10 @@ class ApplicationController < Sinatra::Base
         end
       end
 
-    def authorized_to_edit?(wine)
-      @workout.user == current_user
+    def authorized_to_view_private?
+      @user == current_user
     end
+
   end
+
 end

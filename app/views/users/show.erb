@@ -1,37 +1,54 @@
- <h1 class="mt-4 text-muted font-weight-bold text-center"><u>Profile Page</u></h1>
  <div class="d-flex justify-content-center">
-  <div class="d-inline rounded-circle p-4 my-4 display-2" style="color: rgb(186, 161, 174, .8); background-color: rgba(1, 5, 54, .8);"><%=@user.username%></div>
+  <div class="d-inline rounded-circle px-5 py-4 my-3 display-3" style="color: rgb(186, 161, 174, 1); background-color: rgba(1, 5, 54, 1);"><%=@user.username%></div>
  </div>
+ <h2 class="my-4 text-muted font-weight-bold"><u>Profile Page</u></h2>
   <div class="row mt-4">
     <div class="col-md">
-      <div class="d-inline-flex p-2 rounded mb-2 bg-secondary text-light h5">User Info</div>
+      <div class="d-inline-flex p-2 rounded mb-3 bg-secondary text-light h5">User Info</div>
         <ul>
           <li>User Name: <strong><%=@user.username%></strong></li>
           <li>User Email: <strong><%=@user.email%></strong></li>
           <li>User Slug: <strong><%=@user.slug%></strong></li>
-        </ul><br>
+        </ul>
 
-          <div class="d-inline-flex p-2 rounded mb-2 bg-primary text-light h5">Favorite Exercises</div>
-
-          <h4>Add Another Workout</h4>
-          <p>Please, click <a href="/workouts/new">here.</a></p><br>
+          <div class="d-inline-flex p-2 rounded mt-4 mb-3 bg-primary text-light h5">Favorite Exercises</div>
+           <div>
+            <a href="/workouts/new" class="rounded-circle p-4 mt-5 btn btn-lg btn-info font-weight-bold" style="color: #BAA1AE; background-color: rgba(1, 5, 58, 1);">Add Workout</a>
+           </div>
     </div>
 
     <div class="col-md">
-      <div class="d-inline-flex p-2 rounded mb-2 bg-light text-dark h5">Shared Workouts</div>
-        <ol>
+      <div class="d-inline-flex p-2 rounded mb-3 bg-light text-dark h5">Shared Workouts</div>
           <% @user.workouts.each do |workout|%>
-            <li><a href="/workouts/<%= workout.id%>"><%=workout.created_at.in_time_zone("America/Los_Angeles").strftime("%A - %m/%d/%Y - %H:%M %p") %></a></li>
-              <li><%=  %></li>
-          <% end %>
-        </ol><br>
-
-        <%@user.exercises.each do |exercise|%>
-          <h4> <%= exercise.name %> </h4>
+            <% if workout.share_status == true %>
+                <ol>
+                  <li><a href="/workouts/<%= workout.id%>"><%=workout.created_at.in_time_zone("America/Los_Angeles").strftime("%A - %m/%d/%Y - %H:%M %p") %></a></li>
+                  <li><%=  %></li>
+                </ol>
+            <% end %>
           <% end %>
     </div>
 
     <div class="col-md">
-      <div class="d-inline-flex p-2 rounded mb-2 bg-dark text-light h5">Private Workouts</div>
+      <div class="d-inline-flex p-2 rounded mb-3 bg-dark text-light h5">Private Workouts</div>
+       <% if authorized_to_view_private?  %>
+        <% @user.workouts.each do |workout|%>
+          <% if workout.share_status == false %>
+              <ol>
+                <li><a href="/workouts/<%= workout.id%>"><%=workout.created_at.in_time_zone("America/Los_Angeles").strftime("%A - %m/%d/%Y - %H:%M %p") %></a></li>
+                <li><%=  %></li>
+              </ol>
+          <% end %>
+        <% end %>
+       <% else %>
+        <div class="d-inline-flex rounded p-1 pt-2" style="color: #BAA1AE; background-color: black;">
+          <p class="text-center">To View, Login as: <strong><u><%= @user.username %></u></strong></p>
+        </div>
+        <div class="d-inline-flex rounded p-1 pt-2" style="color: #BAA1AE; background-color: black;">
+          <p class="text-center">Currently Logged In as: <strong><u><%= current_user.username %></u></strong></p>
+        </div>
+       </div>
+       <% end %>
     </div>
+
   </div>

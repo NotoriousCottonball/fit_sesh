@@ -12,18 +12,19 @@ This is a Sinatra App made by George Pianka for Flatiron School Final Project Se
 #### 2. Bundler
 `$ bundle install`
 #### 3. Database
-`$ bundle exec rake db:schema:load`
+`$ rake db:schema:load`
+`$ rake db:seed`
 #### 4. SESSION_SECRET
 ##### (Either set ENV('SESSION_SECRET') OR RUN the following Rake Task to generate a random 128-character code that will be used in the controller configuration settings)
-`$ bundle exec rake session_secret`
+`$ rake session_secret`
 
 ## Initiating a Server
 
 #### Rackup Command
-`$ bundle exec rackup`
+`$ rackup`
 #### Shotgun
 ##### (For application-wide reloading of all source files and templates on each request)
-`$ bundle exec shotgun`
+`$ shotgun`
 
 ---
 

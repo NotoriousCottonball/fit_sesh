@@ -11,7 +11,7 @@
         <a href='/users/<%= current_user.slug %>' class="btn btn-lg btn-primary mr-2">View Profile</a>
         <a href='/logout' class="btn btn-lg btn-dark ml-2">Logout</a>
       </div>
-      <div class="d-inline-flex rounded p-2 mt-4 display-4 font-weight-bold" style="color: #BAA1AE; background-color: rgba(1, 5, 58, .75);">Welcome <%= current_user.username %>!</div>
+      <div class="d-inline-flex rounded p-2 mt-4 h3 font-weight-bold" style="color: #BAA1AE; background-color: rgba(1, 5, 58, .75);">Welcome <%= current_user.username %>!</div>
      <%else%>
          <a href='/login' class="btn btn-lg btn-primary mr-2">Log in</a>
          <a href='/signup' class="btn btn-lg btn-secondary ml-2 ">Sign up</a>
