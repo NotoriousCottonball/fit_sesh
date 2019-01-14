@@ -1,51 +1,50 @@
  <div class="d-flex justify-content-center">
-  <div class="d-inline rounded-circle px-5 py-4 my-3 display-3" style="color: rgb(186, 161, 174, 1); background-color: rgba(1, 5, 54, 1);"><%=@user.username%></div>
+  <div class="d-inline rounded border border-primary px-5 pt-2 pb-3 my-3 display-3" style="color: rgb(186, 161, 174, 1); background-color: black;"><%=@user.username%></div>
  </div>
- <h2 class="my-4 text-muted font-weight-bold"><u>Profile Page</u></h2>
+
+ <h2 class="my-3 text-muted font-weight-bold"><u>Profile Page</u></h2>
+  <% if authorized_to_view_private? %>
+  <a href="/workouts/new" class="btn-hover rounded border border-primary mr-1 p-2 mb-3 btn btn-md btn-info font-weight-bold">Log Workout</a>
+  <a href="/logout" class="btn-hover rounded border border-primary p-2 mb-3 btn btn-md btn-info font-weight-bold">Logout</a>
+  <% end %>
+
+
+
+
   <div class="row mt-4">
-    <div class="col-md">
+
+    <div class="col-md m-2">
       <div class="d-inline-flex p-2 rounded mb-3 bg-secondary text-light h5">User Info</div>
-        <ul>
-          <li>User Name: <strong><%=@user.username%></strong></li>
-          <li>User Email: <strong><%=@user.email%></strong></li>
-          <li>User Slug: <strong><%=@user.slug%></strong></li>
-        </ul>
+          <h6>User Name: <strong><%=@user.username%></strong></h6>
+          <h6>User Email: <strong><%=@user.email%></strong></h6>
+          <h6>User Slug: <strong><%=@user.slug%></strong></h6>
 
           <div class="d-inline-flex p-2 rounded mt-4 mb-3 bg-primary text-light h5">Favorite Exercises</div>
-           <div>
-            <a href="/workouts/new" class="rounded-circle p-4 mt-5 btn btn-lg btn-info font-weight-bold" style="color: #BAA1AE; background-color: rgba(1, 5, 58, 1);">Add Workout</a>
-           </div>
+
     </div>
 
-    <div class="col-md">
-      <div class="d-inline-flex p-2 rounded mb-3 bg-light text-dark h5">Shared Workouts</div>
-          <% @user.workouts.each do |workout|%>
-            <% if workout.share_status == true %>
-                <ol>
-                  <li><a href="/workouts/<%= workout.id%>"><%=workout.created_at.in_time_zone("America/Los_Angeles").strftime("%A - %m/%d/%Y - %H:%M %p") %></a></li>
-                  <li><%=  %></li>
-                </ol>
-            <% end %>
+    <div class="col-md m-2">
+      <div class="d-inline-flex p-2 rounded mb-3 bg-light text-dark font-weight-bold h5">Shared Workouts</div>
+        <div class="list-group">
+          <% @user.workouts.where(share_status: true).order(created_at: :desc).each.with_index do |workout, i|%>
+                  <a href="/workouts/<%= workout.id %>" class="list-group-item list-group-item-action"><%=i+1%>. &nbsp;<%= workout.created_at.in_time_zone("America/Los_Angeles").strftime("%A - %m/%d/%Y - %H:%M %p") %></a>
           <% end %>
+        </div>
     </div>
 
-    <div class="col-md">
+    <div class="col-md m-2">
       <div class="d-inline-flex p-2 rounded mb-3 bg-dark text-light h5">Private Workouts</div>
        <% if authorized_to_view_private?  %>
-        <% @user.workouts.each do |workout|%>
-          <% if workout.share_status == false %>
-              <ol>
-                <li><a href="/workouts/<%= workout.id%>"><%=workout.created_at.in_time_zone("America/Los_Angeles").strftime("%A - %m/%d/%Y - %H:%M %p") %></a></li>
-                <li><%=  %></li>
-              </ol>
-          <% end %>
-        <% end %>
-       <% else %>
-        <div class="d-inline-flex rounded p-1 pt-2" style="color: #BAA1AE; background-color: black;">
-          <p class="text-center">To View, Login as: <strong><u><%= @user.username %></u></strong></p>
+        <div class="list-group">
+         <% @user.workouts.where(share_status: false).order(created_at: :desc).each.with_index do |workout, i|%>
+                 <a href="/workouts/<%= workout.id %>" class="list-group-item list-group-item-action list-group-item-dark"><%=i+1%>. &nbsp;<%= workout.created_at.in_time_zone("America/Los_Angeles").strftime("%A - %m/%d/%Y - %H:%M %p") %></a>
+         <% end %>
         </div>
-        <div class="d-inline-flex rounded p-1 pt-2" style="color: #BAA1AE; background-color: black;">
-          <p class="text-center">Currently Logged In as: <strong><u><%= current_user.username %></u></strong></p>
+       <% else %>
+       <div class="d-inline-flex">
+        <div class="d-block rounded p-1 pt-3" style="color: #BAA1AE; background-color: black;">
+          <p>To View, Login as: <strong><u><%= @user.username %></u></strong></p>
+          <p>Currently Logged In as: <strong><u><%= current_user.username %></u></strong></p>
         </div>
        </div>
        <% end %>

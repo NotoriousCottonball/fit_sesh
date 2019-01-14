@@ -25,6 +25,14 @@ body {
   background-attachment: fixed;
   color: white;
 }
+.btn-hover:hover {
+    background-color: rgba(1, 5, 58, .75);
+    color: white;
+}
+.btn-hover {
+    color: #BAA1AE;
+    background-color: rgba(1, 5, 58, 1);
+}
 .navbar .navbar-brand {
     color: #BAA1AE;
     padding-right: 50px;
@@ -34,7 +42,7 @@ body {
 }
 .navbar-nav .nav-item .nav-link {
     color: #BAA1AE;
-    padding-right: 30px;
+    padding-right: 15px;
     padding-bottom: 12px;
 }
 .form-signin {

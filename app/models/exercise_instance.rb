@@ -9,8 +9,7 @@ class ExerciseInstance < ActiveRecord::Base
   validates :weight_lbs, presence: true
   validates :sets, presence: true
   validates :reps, presence: true
-  validates :exercise_rating, presence: true
-
+  validates :exercise_rating, inclusion: {in: [1, 2, 3, 4, 5]}
 
   extend Slugifiable::ClassMethods
   include Slugifiable::InstanceMethods
