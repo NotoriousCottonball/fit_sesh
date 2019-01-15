@@ -1,0 +1,34 @@
+<h1 class="mt-5 mb-3 ml-3 text-dark font-weight-bold"><u>Exercise Index</u></h1>
+
+ <div class="row mt-3 mr-3 ml-3 py-3 border-custom">
+
+   <div class="col-md m-1">
+      <div class="d-inline-flex p-2 rounded mb-3 bg-dark text-light h5">Exercises By Average User Rating</div>
+       <div class="list-group mr-5">
+        <% @top_exercises_array.each do |array|%>
+                <a href="/exercises/<%= array[0].slug %>" class="list-group-item pt-2 pb-1 pl-2 list-group-item-action btn-hover list-group-item-primary">
+                  <h5><strong><%= array[0].name %></strong></h5>
+                  <h6> Average User Rating: <strong><%= array[1].to_i %>/5</strong></h6>
+                </a>
+
+        <% end %>
+      </div>
+   </div>
+
+    <div class="col-md m-1">
+      <div class="d-inline-flex p-2 rounded mb-3 bg-primary text-light h5">Your Favorite Exercises</div>
+       <div class="list-group mr-5">
+        <% current_user.exercise_instances.group(:exercise).average(:exercise_rating).sort_by {|k,v| v}.reverse.take(3).each do |array|%>
+                <a href="/exercises/<%= array[0].slug %>" class="list-group-item p-3 list-group-item-action list-group-item-primary">
+                  <h5><strong><%= array[0].name %></strong></h5>
+                  <h6> Your Average Rating: <strong><%= array[1].to_i %>/5</strong></h6>
+                </a>
+
+        <% end %>
+      </div>
+    </div>
+
+
+
+
+ </div>

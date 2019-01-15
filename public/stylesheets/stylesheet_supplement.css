@@ -1,18 +1,4 @@
-html,
 body {
-  height: 100%;
-}
-
-body {
-  display: -ms-flexbox;
-  display: -webkit-box;
-  display: flex;
-  -ms-flex-align: center;
-  -ms-flex-pack: center;
-  -webkit-box-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  justify-content: center;
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #e1eff7;
@@ -25,19 +11,39 @@ body {
   background-attachment: fixed;
   color: white;
 }
+.btn-xlarge {
+    padding: 18px 28px;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 18px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
 .border-custom {
     border: 4px solid #BAA1AE;
+}
+.btn-user-hover {
+    background-color: rgba(0, 0, 0, 1);
+    color: rgb(186, 161, 174, 1);
+    border: 4px solid #BAA1AE;
+}
+.btn-user-hover:hover {
+    background-color: rgba(0, 0, 0, .8);
+    color: white;
+    border: 3px solid whitesmoke;
+}
+.btn-hover {
+    background-color: rgba(1, 5, 58, 1);
+    color: #BAA1AE;
+    border: 3px solid lightgrey;
 }
 .btn-hover:hover {
     background-color: rgba(1, 5, 58, .75);
     color: white;
     border: 3px solid whitesmoke;
 }
-.btn-hover {
-    color: #BAA1AE;
-    background-color: rgba(1, 5, 58, 1);
-    border: 3px solid lightgrey;
-}
+
 .navbar .navbar-brand {
     color: #BAA1AE;
     padding-right: 50px;

@@ -1,0 +1,30 @@
+<h1 class="mt-5 mb-3 ml-3 text-dark font-weight-bold"><u>User Index</u></h1>
+
+ <div class="row mt-3 mr-3 ml-3 py-3 border-custom">
+
+   <div class="col-md m-1">
+     <div class="d-inline-flex p-2 rounded mb-3 bg-dark text-light h5">All Users</div>
+       <div class="list-group mr-5">
+         <% @users.each do |user| %>
+               <a href="/users/<%= user.slug %>" class="list-group-item pt-2 pb-1 pl-2 mb-1 list-group-item-action btn-user-hover">
+                 <h5><strong><%= '<h4><u>' if user == current_user %><%= user.username %><%= '</u></h4>' if user == current_user %></strong></h5>
+                 <h6> Email: <strong><%= user.email %></strong></h6>
+               </a>
+         <% end %>
+       </div>
+   </div>
+
+   <div class="col-md m-1">
+      <div class="d-inline-flex p-2 rounded mb-3 bg-primary text-light h5">Top-Rated Exercises</div>
+      <div class="list-group mr-5">
+        <% @top_exercises_array.each do |array|%>
+                <a href="/exercises/<%= array[0].slug %>" class="list-group-item p-3 list-group-item-action list-group-item-primary">
+                  <h5><strong><%= array[0].name %></strong></h5>
+                  <h6> Average User Rating: <strong><%= array[1].to_i %>/5</strong></h6>
+                </a>
+
+        <% end %>
+      </div>
+    </div>
+
+ </div>

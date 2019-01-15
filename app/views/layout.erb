@@ -15,7 +15,7 @@
   <div class="container">
     <div class="d-flex justify-content-center">
     <% if logged_in? %>
-      <nav class="rounded-circle border-custom navbar navbar-dark navbar-expand-lg py-3 px-5" style="background-color: rgba(1, 5, 54);">
+      <nav class="rounded-circle border-custom navbar navbar-dark navbar-expand-lg py-5 px-5" style="background-color: rgba(1, 5, 54);">
         <a class="navbar-brand" href="/">
           <img src="/images/fit_sesh_favicon.png" class="d-inline-block border border-primary mb-2 mr-2" width="35" height="35" alt="">
           <span class="h2">Fit Sesh</span>
@@ -57,7 +57,9 @@
     </div>
 
     <%= yield %>
-
+    <div class="navbar navbar-default navbar-fixed-bottom justify-content-end">
+       <p class="mr-3 font-weight-light text-dark">Fit Sesh &copy; 2019</p>
+    </div>
   </div>
 
 
