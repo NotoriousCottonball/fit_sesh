@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 
   has_many :workouts
   has_many :exercises, :through => :workouts
+  has_many :exercise_instances, :through => :workouts
 
   validates :username, presence: true
   validates :username, uniqueness: true

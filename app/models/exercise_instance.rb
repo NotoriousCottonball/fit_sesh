@@ -1,6 +1,7 @@
 require_relative "./concerns/slugifiable.rb"
 
 class ExerciseInstance < ActiveRecord::Base
+
   belongs_to :workout
   belongs_to :exercise
 
