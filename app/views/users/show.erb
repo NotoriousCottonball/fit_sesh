@@ -1,17 +1,17 @@
  <div class="d-flex justify-content-center">
-  <div class="d-inline rounded border border-primary px-5 pt-2 pb-3 my-3 display-3" style="color: rgb(186, 161, 174, 1); background-color: black;"><%=@user.username%></div>
+  <div class="rounded border-custom px-5 pt-1 pb-2 my-3 display-3" style="color: rgb(186, 161, 174, 1); background-color: black;">&nbsp;<%=@user.username%>&nbsp;</div>
  </div>
 
  <h2 class="my-3 text-muted font-weight-bold"><u>Profile Page</u></h2>
   <% if authorized_to_view_private? %>
-  <a href="/workouts/new" class="btn-hover rounded border border-primary mr-1 p-2 mb-3 btn btn-md btn-info font-weight-bold">Log Workout</a>
-  <a href="/logout" class="btn-hover rounded border border-primary p-2 mb-3 btn btn-md btn-info font-weight-bold">Logout</a>
+  <a href="/workouts/new" class="btn-hover rounded mr-1 mb-3 btn btn-md btn-primary font-weight-bold">Log Workout</a>
+  <a href="/logout" class="btn-hover rounded mb-3 btn btn-md btn-primary font-weight-bold">Logout</a>
   <% end %>
 
 
 
 
-  <div class="row mt-4">
+  <div class="row mt-5">
 
     <div class="col-md m-1">
       <div class="d-inline-flex p-2 rounded mb-3 bg-secondary text-light h5">User Info</div>
@@ -27,7 +27,7 @@
       <div class="d-inline-flex p-2 rounded mb-3 bg-light text-dark font-weight-bold h5">Shared Workouts</div>
         <div class="list-group">
           <% @user.workouts.where(share_status: true).order(created_at: :desc).each.with_index do |workout, i|%>
-                  <a href="/workouts/<%= workout.id %>" class="list-group-item p-3 list-group-item-action"><%=i+1%>. &nbsp;<%= workout.created_at.in_time_zone("America/Los_Angeles").strftime("%A - %m/%d/%Y - %H:%M %p") %></a>
+                  <a href="/workouts/<%= workout.id %>" class="list-group-item p-3 list-group-item-action"><%=i+1%>. &nbsp;<%= workout.created_at.in_time_zone("America/Los_Angeles").strftime("%A - %m/%d/%Y - %l:%M %p") %></a>
           <% end %>
         </div>
     </div>
@@ -37,7 +37,7 @@
        <% if authorized_to_view_private?  %>
         <div class="list-group">
          <% @user.workouts.where(share_status: false).order(created_at: :desc).each.with_index do |workout, i|%>
-                 <a href="/workouts/<%= workout.id %>" class="list-group-item p-3 list-group-item-action list-group-item-dark"><%=i+1%>. &nbsp;<%= workout.created_at.in_time_zone("America/Los_Angeles").strftime("%A - %m/%d/%Y - %H:%M %p") %></a>
+                 <a href="/workouts/<%= workout.id %>" class="list-group-item p-3 list-group-item-action list-group-item-dark"><%=i+1%>. &nbsp;<%= workout.created_at.in_time_zone("America/Los_Angeles").strftime("%A - %m/%d/%Y - %l:%M %p") %></a>
          <% end %>
         </div>
        <% else %>

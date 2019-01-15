@@ -25,13 +25,18 @@ body {
   background-attachment: fixed;
   color: white;
 }
+.border-custom {
+    border: 4px solid #BAA1AE;
+}
 .btn-hover:hover {
     background-color: rgba(1, 5, 58, .75);
     color: white;
+    border: 3px solid whitesmoke;
 }
 .btn-hover {
     color: #BAA1AE;
     background-color: rgba(1, 5, 58, 1);
+    border: 3px solid lightgrey;
 }
 .navbar .navbar-brand {
     color: #BAA1AE;
