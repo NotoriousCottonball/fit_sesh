@@ -13,7 +13,7 @@
 
   <div class="row mt-4">
 
-    <div class="col-md m-2">
+    <div class="col-md m-1">
       <div class="d-inline-flex p-2 rounded mb-3 bg-secondary text-light h5">User Info</div>
           <h6>User Name: <strong><%=@user.username%></strong></h6>
           <h6>User Email: <strong><%=@user.email%></strong></h6>
@@ -23,21 +23,21 @@
 
     </div>
 
-    <div class="col-md m-2">
+    <div class="col-md m-1">
       <div class="d-inline-flex p-2 rounded mb-3 bg-light text-dark font-weight-bold h5">Shared Workouts</div>
         <div class="list-group">
           <% @user.workouts.where(share_status: true).order(created_at: :desc).each.with_index do |workout, i|%>
-                  <a href="/workouts/<%= workout.id %>" class="list-group-item list-group-item-action"><%=i+1%>. &nbsp;<%= workout.created_at.in_time_zone("America/Los_Angeles").strftime("%A - %m/%d/%Y - %H:%M %p") %></a>
+                  <a href="/workouts/<%= workout.id %>" class="list-group-item p-3 list-group-item-action"><%=i+1%>. &nbsp;<%= workout.created_at.in_time_zone("America/Los_Angeles").strftime("%A - %m/%d/%Y - %H:%M %p") %></a>
           <% end %>
         </div>
     </div>
 
-    <div class="col-md m-2">
+    <div class="col-md m-1">
       <div class="d-inline-flex p-2 rounded mb-3 bg-dark text-light h5">Private Workouts</div>
        <% if authorized_to_view_private?  %>
         <div class="list-group">
          <% @user.workouts.where(share_status: false).order(created_at: :desc).each.with_index do |workout, i|%>
-                 <a href="/workouts/<%= workout.id %>" class="list-group-item list-group-item-action list-group-item-dark"><%=i+1%>. &nbsp;<%= workout.created_at.in_time_zone("America/Los_Angeles").strftime("%A - %m/%d/%Y - %H:%M %p") %></a>
+                 <a href="/workouts/<%= workout.id %>" class="list-group-item p-3 list-group-item-action list-group-item-dark"><%=i+1%>. &nbsp;<%= workout.created_at.in_time_zone("America/Los_Angeles").strftime("%A - %m/%d/%Y - %H:%M %p") %></a>
          <% end %>
         </div>
        <% else %>
