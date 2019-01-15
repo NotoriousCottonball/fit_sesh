@@ -14,12 +14,21 @@
   <div class="row mt-5">
 
     <div class="col-md m-1">
-      <div class="d-inline-flex p-2 rounded mb-3 bg-secondary text-light h5">User Info</div>
+      <div class="d-inline-flex p-2 rounded mb-3 bg-dark text-light h5">User Info</div>
           <h6>User Name: <strong><%=@user.username%></strong></h6>
           <h6>User Email: <strong><%=@user.email%></strong></h6>
           <h6>User Slug: <strong><%=@user.slug%></strong></h6>
 
-          <div class="d-inline-flex p-2 rounded mt-4 mb-3 bg-primary text-light h5">Favorite Exercises</div>
+     <div class="d-inline-flex p-2 rounded mt-5 mb-3 bg-primary text-light h5">Favorite Exercises</div>
+     <div class="list-group mr-5">
+       <% @user.exercise_instances.group(:exercise).average(:exercise_rating).sort_by {|k,v| v}.reverse.take(3).each do |array|%>
+               <a href="/exercises/<%= array[0].id %>" class="list-group-item p-3 list-group-item-action list-group-item-primary">
+                 <h5><strong><%= array[0].name %></strong></h5>
+                 <h6> Your Average Rating: <strong><%= array[1].to_i %>/5</strong></h6>
+               </a>
+
+       <% end %>
+     </div>
 
     </div>
 
@@ -33,7 +42,7 @@
     </div>
 
     <div class="col-md m-1">
-      <div class="d-inline-flex p-2 rounded mb-3 bg-dark text-light h5">Private Workouts</div>
+      <div class="d-inline-flex p-2 rounded mb-3 bg-secondary text-light h5">Private Workouts</div>
        <% if authorized_to_view_private?  %>
         <div class="list-group">
          <% @user.workouts.where(share_status: false).order(created_at: :desc).each.with_index do |workout, i|%>
