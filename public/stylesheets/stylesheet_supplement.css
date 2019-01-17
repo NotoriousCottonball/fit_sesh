@@ -11,6 +11,14 @@ body {
   background-attachment: fixed;
   color: white;
 }
+.boxshadow {
+  position: relative;
+  -moz-box-shadow: 1px 2px 4px rgba(0, 0, 0,0.5);
+  -webkit-box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+  padding: 10px;
+  background: white;
+}
 .btn-xlarge {
     padding: 18px 28px;
     font-size: 22px;

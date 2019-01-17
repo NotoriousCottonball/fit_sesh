@@ -3,10 +3,7 @@
  </div>
 <div class="ml-3">
  <h1 class="mb-3 text-dark font-weight-bold"><u>Profile Page</u></h1>
-  <% if authorized_to_view_private? %>
-  <a href="/workouts/new" class="btn-hover rounded mr-1 btn btn-md btn-primary font-weight-bold">Log Workout</a>
-  <a href="/logout" class="btn-hover rounded btn btn-md btn-primary font-weight-bold">Logout</a>
-  <% end %>
+  <a href="/users" class="btn-hover rounded mr-1 btn btn-lg btn-primary font-weight-bold">View User Index</a>
 </div>
 
 
@@ -26,7 +23,6 @@
                  <h5><strong><%= array[0].name %></strong></h5>
                  <h6> Your Average Rating: <strong><%= array[1].to_i %>/5</strong></h6>
                </a>
-
        <% end %>
      </div>
 

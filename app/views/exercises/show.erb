@@ -1,30 +1,63 @@
 <div class="d-flex justify-content-center">
   <div class="rounded border-custom px-5 pt-1 pb-2 my-3" style="color: rgb(186, 161, 174, 1); background-color: rgba(1, 5, 58, 1);">
     <p class="display-3">&nbsp;<%=@exercise.name%>&nbsp;</p>
-    <h5 class="text-center"> Average User Rating: <strong><%= @exercise.exercise_instances.average(:exercise_rating).to_i %>/5</strong> </h5>
+    <h5 class="text-center"> Average User Rating: <strong><%= @avg_rating.to_i %>/5</strong> </h5>
     <h5 class="text-center"> Your Average Rating: <strong><%= current_user.exercise_instances.where(exercise: @exercise).average(:exercise_rating).to_i %>/5</strong> </h5>
   </div>
 </div>
+<div class="d-flex justify-content-center">
+  <div class="boxshadow bg-light my-4 mx-3 p-4">
+    <h4><%=@exercise.description%></h4>
+  </div>
+</div>
   <div class="ml-3">
-  <h1 class="mb-3 text-dark font-weight-bold"><u><%=@exercise.name%> Page</u></h1>
+  <h1 class="my-3 text-dark font-weight-bold"><u><%=@exercise.name%> Page</u></h1>
+  <a href="/exercises" class="btn-hover rounded mr-1 btn btn-lg btn-primary font-weight-bold">View Exercise Index</a>
   </div>
 
 
 <div class="row mt-3 mr-3 ml-3 py-3 border-custom">
 
   <div class="col-md m-1">
-     <div class="d-inline-flex p-2 rounded mb-3 bg-dark text-light h5">Exercises By Average User Rating</div>
-
-  </div>
-
-   <div class="col-md m-1">
-     <div class="d-inline-flex p-2 rounded mb-3 bg-primary text-light h5">Your Favorite Exercises</div>
-      <div class="list-group mr-5">
-
+     <div class="d-inline-flex p-2 rounded mb-3 bg-dark text-light">
+      <div>
+       <h5>Users Who Like This Exercise</h5>
+       <h5 class="text-center">(Rating > User Average)</h5>
+      </div>
+     </div>
+     <div class="list-group mr-5">
+       <% @users.each do |user| %>
+        <% if user_rating = user.exercise_instances.where(exercise: @exercise).average(:exercise_rating) %>
+          <% if user_rating >= @avg_rating %>
+             <a href="/users/<%= user.slug %>" class="list-group-item pt-2 pb-1 pl-2 mb-1 list-group-item-action btn-user-hover">
+               <h5><strong><%= '<h4><u>' if user == current_user %><%= user.username %><%= '</u></h4>' if user == current_user %></strong></h5>
+               <h6> Rating: <strong><%= user_rating  %></strong></h6>
+             </a>
+          <% end %>
+        <% end %>
+       <% end %>
      </div>
    </div>
 
+   <div class="col-md m-1">
+      <div class="d-inline-flex p-2 rounded mb-3 bg-dark text-light">
+       <div>
+        <h5>Users Who Do This Exercise A Lot</h5>
+        <h5 class="text-center">(Top 3 By Frequency)</h5>
+       </div>
+      </div>
+
+      <div class="list-group mr-5">
+        <% @users.map{ |user| [user, user.exercise_instances.where(exercise: @exercise).count]}.sort_by {|k,v| v}.reverse.take(3).each do |array|%>
+                <a href="/users/<%= array[0].slug %>" class="list-group-item pt-2 pb-1 pl-2 mb-1 list-group-item-action btn-user-hover">
+                  <h5><strong><%= array[0].username %></strong></h5>
+                  <h6> Performed -&nbsp;<strong><%= array[1] %></strong>&nbsp;- Time<%='s' if array[1] > 1 %></h6>
+                </a>
+        <% end %>
+
+      </div>
 
 
+    </div>
 
 </div>

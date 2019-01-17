@@ -4,6 +4,7 @@ class ExerciseInstance < ActiveRecord::Base
 
   belongs_to :workout
   belongs_to :exercise
+  delegate :user, :to => :workout
 
   validates :workout_id, presence: true
   validates :exercise_id, presence: true
