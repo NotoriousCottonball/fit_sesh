@@ -7,14 +7,14 @@ class WorkoutsController < ApplicationController
 
   post "/workouts" do
     redirect_if_not_logged_in
-    if params[:name] != "" && params[:vineyard] != "" && params[:rating] != "" && params[:year] != "" && params[:tasting_notes] != ""
-      @wine = Wine.create(name: params[:name], vineyard: params[:vineyard], year: params[:year], rating: params[:rating], tasting_notes: params[:tasting_notes], user_id: current_user.id)
-      flash[:message] = "Wine successfully added."
-      redirect "/wines/#{@wine.id}"
-    else
-      flash[:error] = "Something went wrong - you must fill in all of the required fields for your entry."
-      redirect '/wines/new'
-    end
+      @workout = current_user.workouts.new(params[:workout])
+      if @workout.save
+        flash[:message] = "Workout Successfully Created. ADD Exercise Entries Below:"
+        redirect "/users/#{@workout.id}"
+      else
+        flash[:error] = "Workout Creation Failure: #{@workout.errors.full_messages.to_sentence}"
+        redirect '/workouts/new'
+      end
   end
 
   get "/workouts/:id" do
@@ -32,6 +32,34 @@ class WorkoutsController < ApplicationController
     end
   end
 
+  get "/workouts/:id/edit" do
+    redirect_if_not_logged_in
+    @workout = Workout.find(params[:id])
+    if @workout.user == current_user
+      erb :'workouts/edit'
+    else
+      flash[:error] = "You're Not Authorized to Edit that Workout!"
+      redirect to "/"
+    end
+  end
+
+  patch "/workouts/:id" do
+    redirect_if_not_logged_in
+    @workout = Workout.find(params[:id])
+    if @workout.user == current_user
+      if @workout.update(params[:workout])
+        flash[:message] = "Workout Successfully Edited."
+        redirect to "/workouts/#{@workout.id}"
+      else
+      flash[:error] = "Workout Edit Failure: #{@workout.errors.full_messages.to_sentence}"
+      redirect to "/workouts/#{@workout.id}"
+      end
+    else
+      flash[:error] = "You're Not Authorized to Edit that Workout!"
+      redirect to "/"
+    end
+  end
+
   delete "/workouts/:id" do
     redirect_if_not_logged_in
     @workout= Workout.find(params[:id])
@@ -40,36 +68,9 @@ class WorkoutsController < ApplicationController
       flash[:message] = "Workout Successfully Deleted"
       redirect to "/users/#{current_user.slug}"
     else
-      flash[:error] = "Your are Not Authorized to Delete This Workout!"
+      flash[:error] = "You're Not Authorized to Delete This Workout!"
       redirect to "/workouts/#{@workout.id}"
     end
   end
 
 end
-
-=begin
-
-
-
-  get "/wines/:id/edit" do
-    redirect_if_not_logged_in
-    @wine = Wine.find(params[:id])
-    erb :'wines/edit'
-  end
-
-  patch "/wines/:id" do
-    redirect_if_not_logged_in
-    @wine = Wine.find(params[:id])
-    if params[:rating].empty? || params[:tasting_notes].empty?
-      flash[:error] = "You cannot edit a wine review without a rating and tasting_notes."
-      redirect "/wines/#{@wine.id}/edit"
-    else
-      @wine.update(rating: params[:rating], tasting_notes: params[:tasting_notes])
-      @wine.save
-      flash[:message] = "Successfully edited the wine."
-      redirect "/wines/#{@wine.id}"
-    end
-  end
-
-
-=end

@@ -1,0 +1,33 @@
+<div class="container mt-5">
+  <h1 class="mb-5 text-dark font-weight-bold"><u><%= current_user.username.capitalize %>'s Workout (EDIT)</u></h1>
+  <h2 class="text-center display-4"> <%= @workout.created_at.in_time_zone("America/Los_Angeles").strftime("%A - %m/%d/%Y - %l:%M %p") %> </h2>
+  <form action="/workouts/<%= @workout.id %>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+    <div class="row mt-5">
+        <div class="col-sm text-center h4">
+            <legend class="col-form-label">Share_Status:</legend>
+            <div class="form-check mb-3">
+              <input class="form-check-input mt-3" type="radio" name="workout[share_status]" id="share_status_1" value=true <%= 'checked' if @workout.share_status %>>
+              <label class="form-check-label bg-light p-2" for="share_status_1">
+                Shared Workout
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input mt-3" type="radio" name="workout[share_status]" id="share_status_2" value=false <%= 'checked' if !@workout.share_status %>>
+              <label class="form-check-label bg-secondary text-light p-2" for="share_status_2">
+                Private Workout
+              </label>
+            </div>
+        </div>
+        <div class="col-3 text-center align-self-center font-weight-bold p-3">
+          <h5 class="align-self-center">- AND -</h5>
+        </div>
+        <div class="col-sm text-center h4">
+            <div class="form-group mx-5">
+              <label for="workout[duration_minutes]">Workout Duration (Minutes):</label>
+              <input type="text" class="form-control" id="workout[duration_minutes]" name="workout[duration_minutes]" placeholder="<%= @workout.duration_minutes %>">
+            </div>
+        </div>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block border border-muted mt-2" type="submit" value="submit">Submit</button>
+  </form>

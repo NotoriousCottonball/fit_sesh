@@ -1,32 +1,32 @@
 <div class="container mt-5">
+  <h1 class="mb-5 text-dark font-weight-bold"><u><%= current_user.username.capitalize %>'s New Workout</u></h1>
+  <h2 class="text-center display-4"> <%= Time.now.strftime("%A - %m/%d/%Y - %l:%M %p") %> </h2>
   <form action="/workouts" method="post">
-    <div class="form-group">
-      <label for="exampleFormControlInput1">Email address</label>
-      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-    </div>
-    <div class="form-group">
-      <label for="exampleFormControlSelect1">Example select</label>
-      <select class="form-control" id="exampleFormControlSelect1">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="exampleFormControlSelect2">Example multiple select</label>
-      <select multiple class="form-control" id="exampleFormControlSelect2">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="exampleFormControlTextarea1">Example textarea</label>
-      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-    </div>
+    <div class="row mt-5">
+        <div class="col-sm text-center h4">
+            <legend class="col-form-label">Share_Status:</legend>
+            <div class="form-check mb-3">
+              <input class="form-check-input mt-3" type="radio" name="workout[share_status]" id="share_status_1" value=true>
+              <label class="form-check-label bg-light p-2" for="share_status_1">
+                Shared Workout
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input mt-3" type="radio" name="workout[share_status]" id="share_status_2" value=false checked>
+              <label class="form-check-label bg-secondary text-light p-2" for="share_status_2">
+                Private Workout
+              </label>
+            </div>
+        </div>
+        <div class="col-3 text-center align-self-center font-weight-bold p-3">
+          <h5 class="align-self-center">- AND -</h5>
+        </div>
+        <div class="col-sm text-center h4">
+            <div class="form-group mx-5">
+              <label for="workout[duration_minutes]">Workout Duration (Minutes):</label>
+              <input type="text" class="form-control" id="workout[duration_minutes]" name="workout[duration_minutes]" placeholder="#">
+            </div>
+        </div>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block border border-muted mt-2" type="submit" value="submit">Submit</button>
   </form>
-</div>

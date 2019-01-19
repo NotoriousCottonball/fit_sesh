@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-center">
   <div class="rounded border-custom bg-light <%= 'bg-dark text-light' if @workout.share_status == false %> px-5 pt-1 pb-2 my-3">
-    <p class="display-4">&nbsp;<%= @workout.created_at.in_time_zone("America/Los_Angeles").strftime("%A - %m/%d/%Y - %l:%M %p") %></p>
+    <p class="display-4"><%= @workout.created_at.in_time_zone("America/Los_Angeles").strftime("%A - %m/%d/%Y - %l:%M %p") %></p>
     <h2 class="text-center">-&nbsp; <strong><%= @workout.duration_minutes %></strong> Minutes &nbsp;-</h2>
     <h5 class="text-center"><%= @workout.share_status ? '(Shared)' : '(Private)' %><strong></strong></h5>
   </div>
@@ -8,6 +8,15 @@
   <div class="ml-3">
   <h1 class="my-3 text-dark font-weight-bold"><u> <%= @workout.user.username %>'s Workout</u></h1>
   <a href="/users/<%= @workout.user.slug %>" class="btn-hover rounded mr-1 btn btn-lg btn-primary font-weight-bold">View User Profile</a>
+  <% if @workout.user == current_user %>
+    <div class="mt-3">
+      <a href="/workouts/<%= @workout.id %>/edit" class="btn btn-md btn-info border border-muted">Edit Workout</a>
+      <form class="d-inline" action="/workouts/<%= @workout.id %>" method="post">
+      <input id="hidden" type="hidden" name="_method" value="delete">
+      <button class="btn btn-md btn-dark border border-muted" type="submit" value="submit">Delete Workout</button>
+      </form>
+    </div>
+  <% end %>
   </div>
 
 
@@ -45,13 +54,5 @@
         <% end %>
       </tbody>
     </table>
-    <form class="text-right" action="/workouts/<%= @workout.id %>" method="post">
-    <input id="hidden" type="hidden" name="_method" value="delete">
-    <button class="btn btn-md btn-dark border border-muted mt-5" type="submit" value="submit">Delete Workout</button>
-    </form>
-
    </div>
-
-
-
 </div>
