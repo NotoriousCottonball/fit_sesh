@@ -9,6 +9,12 @@
                 <a href="/exercises/<%= array[0].slug %>" class="list-group-item pt-2 pb-1 pl-2 list-group-item-action btn-hover list-group-item-primary">
                   <h5><strong><%= array[0].name %></strong></h5>
                   <h6> Average User Rating: <strong><%= array[1].to_i %>/5</strong></h6>
+                  <% if current_user.id == 1 %>
+                    <form action="/exercises/<%= array[0].slug %>" method="post">
+                    <input id="hidden" type="hidden" name="_method" value="delete">
+                    <button class="btn btn-sm btn-dark border border-muted my-1" type="submit" value="submit">Delete Entry</button>
+                    </form>
+                  <% end %>
                 </a>
         <% end %>
         <% @exercises.each do |exercise| %>
@@ -16,6 +22,12 @@
                 <a href="/exercises/<%= exercise.slug %>" class="list-group-item pt-2 pb-1 pl-2 list-group-item-action btn-hover list-group-item-primary">
                   <h5><strong><%= exercise.name %></strong></h5>
                   <h6> Average User Rating: <strong>Not Yet Performed</strong></h6>
+                  <% if current_user.id == 1 %>
+                    <form action="/exercises/<%= exercise.slug %>" method="post">
+                    <input id="hidden" type="hidden" name="_method" value="delete">
+                    <button class="btn btn-sm btn-dark border border-muted my-1" type="submit" value="submit">Delete Entry</button>
+                    </form>
+                  <% end %>
                 </a>
             <% end %>
         <% end %>
@@ -33,9 +45,9 @@
 
         <% end %>
       </div>
-      <div class="row justify-content-end mr-5 mt-5">
-        <a href='/exercises/new' class="btn btn-xlarge btn-lg btn-primary border border-dark mt-5">Add New Exercise</a>
-      </div>
+        <div class="mr-5 mt-5">
+          <a href='/exercises/new' class="btn btn-xlarge btn-lg btn-primary border border-dark mt-5">Add New Exercise</a>
+        </div>
     </div>
 
 

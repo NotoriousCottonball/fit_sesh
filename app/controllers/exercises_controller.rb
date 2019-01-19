@@ -33,4 +33,17 @@ class ExercisesController < ApplicationController
     erb :'exercises/show'
    end
 
+   delete '/exercises/:slug' do
+      redirect_if_not_logged_in
+      @exercise = Exercise.find_by_slug(params[:slug])
+      if current_user.id == 1
+        @exercise.destroy
+        flash[:message] = "Exercise Successfully Deleted"
+        redirect to "/exercises"
+      else
+        flash[:error] = "You are Not Authorized to Delete This Exercise!"
+        redirect to "/exercises"
+      end
+    end
+
 end
