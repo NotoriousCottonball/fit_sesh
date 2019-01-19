@@ -10,7 +10,7 @@
 
   <div class="row mt-3 mr-3 ml-3 py-3 border-custom">
 
-    <div class="col-md m-1">
+    <div class="col-md">
       <div class="d-inline-flex p-2 rounded mb-3 bg-dark text-light h5">User Info</div>
           <h6>User Name: <strong><%=@user.username%></strong></h6>
           <h6>User Email: <strong><%=@user.email%></strong></h6>
@@ -28,7 +28,7 @@
 
     </div>
 
-    <div class="col-md m-1">
+    <div class="col-md">
       <div class="d-inline-flex p-2 rounded mb-3 bg-light text-dark font-weight-bold h5">Shared Workouts</div>
         <div class="list-group">
           <% @user.workouts.where(share_status: true).order(created_at: :desc).each.with_index do |workout, i|%>
@@ -37,7 +37,7 @@
         </div>
     </div>
 
-    <div class="col-md m-1">
+    <div class="col-md">
       <div class="d-inline-flex p-2 rounded mb-3 bg-secondary text-light h5">Private Workouts</div>
        <% if authorized_to_view_private?  %>
         <div class="list-group">

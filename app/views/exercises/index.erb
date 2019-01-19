@@ -5,12 +5,19 @@
    <div class="col-md m-1">
       <div class="d-inline-flex p-2 rounded mb-3 bg-dark text-light h5">Exercises By Average User Rating</div>
        <div class="list-group mr-5">
-        <% @top_exercises_array.each do |array|%>
+        <% @top_exercises_array.each do |array| %>
                 <a href="/exercises/<%= array[0].slug %>" class="list-group-item pt-2 pb-1 pl-2 list-group-item-action btn-hover list-group-item-primary">
                   <h5><strong><%= array[0].name %></strong></h5>
                   <h6> Average User Rating: <strong><%= array[1].to_i %>/5</strong></h6>
                 </a>
-
+        <% end %>
+        <% @exercises.each do |exercise| %>
+            <% if exercise.exercise_instances.empty? %>
+                <a href="/exercises/<%= exercise.slug %>" class="list-group-item pt-2 pb-1 pl-2 list-group-item-action btn-hover list-group-item-primary">
+                  <h5><strong><%= exercise.name %></strong></h5>
+                  <h6> Average User Rating: <strong>Not Yet Performed</strong></h6>
+                </a>
+            <% end %>
         <% end %>
       </div>
    </div>
@@ -25,6 +32,9 @@
                 </a>
 
         <% end %>
+      </div>
+      <div class="row justify-content-end mr-5 mt-5">
+        <a href='/exercises/new' class="btn btn-xlarge btn-lg btn-primary border border-dark mt-5">Add New Exercise</a>
       </div>
     </div>
 

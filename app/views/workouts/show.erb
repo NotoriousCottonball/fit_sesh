@@ -1,0 +1,57 @@
+<div class="d-flex justify-content-center">
+  <div class="rounded border-custom bg-light <%= 'bg-dark text-light' if @workout.share_status == false %> px-5 pt-1 pb-2 my-3">
+    <p class="display-4">&nbsp;<%= @workout.created_at.in_time_zone("America/Los_Angeles").strftime("%A - %m/%d/%Y - %l:%M %p") %></p>
+    <h2 class="text-center">-&nbsp; <strong><%= @workout.duration_minutes %></strong> Minutes &nbsp;-</h2>
+    <h5 class="text-center"><%= @workout.share_status ? '(Shared)' : '(Private)' %><strong></strong></h5>
+  </div>
+</div>
+  <div class="ml-3">
+  <h1 class="my-3 text-dark font-weight-bold"><u> <%= @workout.user.username %>'s Workout</u></h1>
+  <a href="/users/<%= @workout.user.slug %>" class="btn-hover rounded mr-1 btn btn-lg btn-primary font-weight-bold">View User Profile</a>
+  </div>
+
+
+<div class="row mt-3 mr-3 ml-3 py-3 border-custom">
+
+  <div class="col-md m-1">
+    <table class="table table-light table-bordered">
+      <thead class = "h4 text-center bg-primary text-light <%= 'bg-dark' if @workout.share_status == false %>">
+        <tr>
+          <th scope="col">Exercise</th>
+          <th scope="col">Sets</th>
+          <th scope="col">Reps</th>
+          <th scope="col">Weight(lb)</th>
+          <th scope="col">Rating</th>
+          <th scope="col">Notes</th>
+          <th scope="col"><a href="/exercise_instances/new/<%= @workout.id %>" class="btn btn-lg btn-secondary border border-muted">Add Exercise</a></th>
+        </tr>
+      </thead>
+      <tbody class="h5 text-center">
+        <% @workout.exercise_instances.each.with_index do |exercise_performance, i| %>
+            <tr>
+              <th scope="row"><a href="/exercises/<%= exercise_performance.exercise.slug %>" class="list-group-item py-2 list-group-item-action btn-hover list-group-item-primary text-left"><%= exercise_performance.exercise.name %></a></th>
+              <td><%= exercise_performance.sets %></td>
+              <td><%= exercise_performance.reps %></td>
+              <td><%= exercise_performance.weight_lbs %></td>
+              <td><%= exercise_performance.exercise_rating %>/5</td>
+              <td class="h6"><%= exercise_performance.notes %></td>
+              <td>
+                <form action="/exercise_instances/<%= exercise_performance.id %>" method="post">
+                <input id="hidden" type="hidden" name="_method" value="delete">
+                <button class="btn btn-sm btn-dark border border-muted" type="submit" value="submit">Delete Entry</button>
+                </form>
+              </td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <form class="text-right" action="/workouts/<%= @workout.id %>" method="post">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    <button class="btn btn-md btn-dark border border-muted mt-5" type="submit" value="submit">Delete Workout</button>
+    </form>
+
+   </div>
+
+
+
+</div>

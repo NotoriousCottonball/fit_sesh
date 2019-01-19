@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       redirect to "/"
     else
       flash[:error] = "Your Credentials were Invalid. Please Sign Up or Try Again."
-    redirect to "/"
+      redirect to "/"
     end
   end
 
