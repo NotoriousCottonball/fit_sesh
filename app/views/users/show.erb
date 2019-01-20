@@ -21,7 +21,7 @@
        <% @user.exercise_instances.group(:exercise).average(:exercise_rating).sort_by {|k,v| v}.reverse.take(3).each do |array|%>
                <a href="/exercises/<%= array[0].slug %>" class="list-group-item p-3 list-group-item-action list-group-item-primary">
                  <h5><strong><%= array[0].name %></strong></h5>
-                 <h6> Your Average Rating: <strong><%= array[1].to_i %>/5</strong></h6>
+                 <h6> <%= @user.username.capitalize %>'s Average Rating: <strong><%= array[1].to_i %>/5</strong></h6>
                </a>
        <% end %>
      </div>
