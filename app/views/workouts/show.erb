@@ -32,7 +32,9 @@
           <th scope="col">Weight(lb)</th>
           <th scope="col">Rating</th>
           <th scope="col">Notes</th>
-          <th scope="col"><a href="/exercise_instances/new/<%= @workout.id %>" class="btn btn-lg btn-secondary <%= 'text-muted' unless @workout.user == current_user %> border border-muted">Add Exercise</a></th>
+          <% if @workout.user == current_user %>
+            <th scope="col"><a href="/exercise_instances/new/<%= @workout.id %>" class="btn btn-lg btn-secondary border border-muted">Add Exercise</a></th>
+          <% end %>
         </tr>
       </thead>
       <tbody class="h5 text-center">
@@ -44,12 +46,14 @@
               <td><%= exercise_performance.weight_lbs %></td>
               <td><%= exercise_performance.exercise_rating %>/5</td>
               <td class="h6"><%= exercise_performance.notes %></td>
-              <td>
-                <form action="/exercise_instances/<%= exercise_performance.id %>" method="post">
-                <input id="hidden" type="hidden" name="_method" value="delete">
-                <button class="btn btn-sm btn-dark border border-muted <%= 'text-dark' unless @workout.user == current_user %>" type="submit" value="submit">Delete Entry</button>
-                </form>
-              </td>
+              <% if exercise_performance.user == current_user %>
+                <td>
+                  <form action="/exercise_instances/<%= exercise_performance.id %>" method="post">
+                  <input id="hidden" type="hidden" name="_method" value="delete">
+                  <button class="btn btn-sm btn-dark border border-muted" type="submit" value="submit">Delete Entry</button>
+                  </form>
+                </td>
+              <% end %>
             </tr>
         <% end %>
       </tbody>
