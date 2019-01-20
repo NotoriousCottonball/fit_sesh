@@ -10,7 +10,7 @@ class WorkoutsController < ApplicationController
       @workout = current_user.workouts.new(params[:workout])
       if @workout.save
         flash[:message] = "Workout Successfully Created. ADD Exercise Entries Below:"
-        redirect "/users/#{@workout.id}"
+        redirect to "/workouts/#{@workout.id}"
       else
         flash[:error] = "Workout Creation Failure: #{@workout.errors.full_messages.to_sentence}"
         redirect '/workouts/new'
