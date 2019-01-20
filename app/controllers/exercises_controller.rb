@@ -26,10 +26,10 @@ class ExercisesController < ApplicationController
 
    get '/exercises/:slug' do
     redirect_if_not_logged_in
-
     @exercise = Exercise.find_by_slug(params[:slug])
     @users = User.all
     @avg_rating = @exercise.exercise_instances.average(:exercise_rating)
+    @current_user_rating = current_user.exercise_instances.where(exercise: @exercise).average(:exercise_rating)
     erb :'exercises/show'
    end
 

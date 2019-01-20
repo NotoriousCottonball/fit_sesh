@@ -1,8 +1,24 @@
 <div class="d-flex justify-content-center">
   <div class="rounded border-custom px-5 pt-1 pb-2 my-3" style="color: rgb(186, 161, 174, 1); background-color: rgba(1, 5, 58, 1);">
     <p class="display-3">&nbsp;<%=@exercise.name%>&nbsp;</p>
-    <h5 class="text-center"> Average User Rating: <strong><%= @avg_rating.to_i %>/5</strong> </h5>
-    <h5 class="text-center"> Your Average Rating: <strong><%= current_user.exercise_instances.where(exercise: @exercise).average(:exercise_rating).to_i %>/5</strong> </h5>
+
+    <h5 class="text-center"> Average User Rating:
+    <strong>
+      <% if @avg_rating %>
+        <%= @avg_rating.to_i %>/5
+      <% else %>
+        Not Yet Performed
+      <% end %>
+    </strong> </h5>
+
+    <h5 class="text-center"> Your Average Rating:
+    <strong>
+      <% if @current_user_rating %>
+        <%= @current_user_rating.to_i %>/5
+      <% else %>
+        Not Yet Performed
+      <% end %>
+    </strong></h5>
   </div>
 </div>
 <div class="d-flex justify-content-center">
@@ -31,7 +47,7 @@
           <% if user_rating >= @avg_rating %>
              <a href="/users/<%= user.slug %>" class="list-group-item pt-2 pb-1 pl-2 mb-1 list-group-item-action btn-user-hover">
                <h5><strong><%= '<h4><u>' if user == current_user %><%= user.username %><%= '</u></h4>' if user == current_user %></strong></h5>
-               <h6> Rating: <strong><%= user_rating  %></strong></h6>
+               <h6> Rating: <strong><%= user_rating.to_i  %>/5</strong></h6>
              </a>
           <% end %>
         <% end %>
@@ -49,10 +65,12 @@
 
       <div class="list-group mr-5">
         <% @users.map{ |user| [user, user.exercise_instances.where(exercise: @exercise).count]}.sort_by {|k,v| v}.reverse.take(3).each do |array|%>
+          <% if array[1] > 0 %>
                 <a href="/users/<%= array[0].slug %>" class="list-group-item pt-2 pb-1 pl-2 mb-1 list-group-item-action btn-user-hover">
                   <h5><strong><%= array[0].username %></strong></h5>
                   <h6> Performed -&nbsp;<strong><%= array[1] %></strong>&nbsp;- Time<%='s' if array[1] > 1 %></h6>
                 </a>
+          <% end %>
         <% end %>
 
       </div>
