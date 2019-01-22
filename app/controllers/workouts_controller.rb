@@ -19,7 +19,8 @@ class WorkoutsController < ApplicationController
 
   get "/workouts/:id" do
     redirect_if_not_logged_in
-    @workout = Workout.find(params[:id])
+    session[:workout_id] = params[:id]
+    @workout = Workout.find(session[:workout_id])
     if @workout.share_status == true
       erb :'/workouts/show'
     else

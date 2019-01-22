@@ -33,7 +33,7 @@
           <th scope="col">Rating</th>
           <th scope="col">Notes</th>
           <% if @workout.user == current_user %>
-            <th scope="col"><a href="/exercise_instances/new/<%= @workout.id %>" class="btn btn-lg btn-secondary border border-muted">Add Exercise</a></th>
+            <th scope="col"><a href="/exercise_instances/new" class="btn btn-lg btn-secondary border border-muted">Add Exercise</a></th>
           <% end %>
         </tr>
       </thead>

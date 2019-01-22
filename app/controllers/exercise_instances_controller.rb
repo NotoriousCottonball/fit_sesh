@@ -1,8 +1,8 @@
 class ExerciseInstancesController < ApplicationController
 
-  get "/exercise_instances/new/:id" do
+  get "/exercise_instances/new" do
     redirect_if_not_logged_in
-    @workout = Workout.find(params[:id])
+    @workout = Workout.find(session[:workout_id])
     if @workout.user == current_user
       @exercises = Exercise.all
       erb :"/exercise_instances/new"
@@ -12,9 +12,9 @@ class ExerciseInstancesController < ApplicationController
     end
   end
 
-  post '/exercise_instances/new/:id' do
+  post '/exercise_instances/new' do
     redirect_if_not_logged_in
-    params[:exercise_instance][:workout_id] = params[:id]
+    params[:exercise_instance][:workout_id] = session[:workout_id]
     @exercise_instance = ExerciseInstance.new(params[:exercise_instance])
     if !params["exercise"]["name"].empty? && !params["exercise"]["description"].empty?
       @exercise = Exercise.create(name: params["exercise"]["name"].split(/\b/).map(&:capitalize).join, description: params["exercise"]["description"])
@@ -22,11 +22,11 @@ class ExerciseInstancesController < ApplicationController
     end
     if @exercise_instance.save
       flash[:message] = "Exercise Entry Successfully Added"
-      redirect to "/workouts/#{params[:id]}"
+      redirect to "/workouts/#{session[:workout_id]}"
     else
       @exercise.destroy if @exercise
       flash[:error] = "Exercise Entry Creation Failure: #{@exercise_instance.errors.full_messages.to_sentence}"
-      redirect to "/workouts/#{params[:id]}"
+      redirect to "/workouts/#{session[:workout_id]}"
     end
   end
 
