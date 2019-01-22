@@ -1,4 +1,4 @@
-class ExercisesController < ApplicationController
+class ExerciseInstancesController < ApplicationController
 
   get "/exercise_instances/new/:id" do
     redirect_if_not_logged_in
