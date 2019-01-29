@@ -1,6 +1,6 @@
 class ExerciseInstancesController < ApplicationController
 
-  get "/exercise_instances/new" do
+  get "/exercise_instances/new" do # /workouts/:workout_id/exercise_instances/new
     redirect_if_not_logged_in
     @workout = Workout.find(session[:workout_id])
     if @workout.user == current_user
@@ -15,6 +15,7 @@ class ExerciseInstancesController < ApplicationController
   post '/exercise_instances/new' do
     redirect_if_not_logged_in
     params[:exercise_instance][:workout_id] = session[:workout_id]
+    not_authorized_redirect
     @exercise_instance = ExerciseInstance.new(params[:exercise_instance])
     if !params["exercise"]["name"].empty? && !params["exercise"]["description"].empty?
       @exercise = Exercise.create(name: params["exercise"]["name"].split(/\b/).map(&:capitalize).join, description: params["exercise"]["description"])

@@ -35,12 +35,18 @@ class ApplicationController < Sinatra::Base
           flash[:message] = "You are already logged in. Welcome back #{current_user.username}!"
           redirect to "/"
         end
-      end
+    end
 
     def authorized_to_view_private?
       @user == current_user
     end
 
-  end
+    def not_authorized_redirect
+      if @workout.user != current_user
+        flash[:error] = "You're Not Authorized to Edit that Workout!"
+        redirect to "/"
+      end
+    end
 
+  end
 end

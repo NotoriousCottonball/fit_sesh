@@ -47,7 +47,7 @@ class WorkoutsController < ApplicationController
   patch "/workouts/:id" do
     redirect_if_not_logged_in
     @workout = Workout.find(params[:id])
-    if @workout.user == current_user
+    not_authorized_redirect
       if @workout.update(params[:workout])
         flash[:message] = "Workout Successfully Edited."
         redirect to "/workouts/#{@workout.id}"
@@ -55,10 +55,6 @@ class WorkoutsController < ApplicationController
       flash[:error] = "Workout Edit Failure: #{@workout.errors.full_messages.to_sentence}"
       redirect to "/workouts/#{@workout.id}"
       end
-    else
-      flash[:error] = "You're Not Authorized to Edit that Workout!"
-      redirect to "/"
-    end
   end
 
   delete "/workouts/:id" do
